@@ -1,97 +1,158 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# RN-CLI-App
 
-# Getting Started
+Enterprise-grade React Native CLI application built with **Clean Architecture**, **MVVM**, **Atomic Design**, and **Feature-Based Modular Architecture**.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Tech Stack
 
-## Step 1: Start Metro
+| Category   | Technology                          |
+| ---------- | ----------------------------------- |
+| Framework  | React Native 0.86 (CLI)             |
+| Language   | TypeScript (strict)                 |
+| Navigation | React Navigation v7                 |
+| State      | Redux Toolkit + Redux Persist       |
+| Networking | Axios + axios-retry                 |
+| Storage    | react-native-mmkv                   |
+| Forms      | React Hook Form + Yup               |
+| i18n       | react-i18next (EN / ES)             |
+| Testing    | Jest + React Native Testing Library |
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## Architecture Flow
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+```
+UI (Screens/Components)
+        ↓
+ViewModel (Hooks)
+        ↓
+UseCase (Business Logic)
+        ↓
+Repository Interface (Domain)
+        ↓
+Repository Implementation (Data/Feature)
+        ↓
+API / Local Database
+```
 
-```sh
-# Using npm
-npm start
+**Rule:** UI layer must NEVER contain business logic.
 
-# OR using Yarn
+## Project Structure
+
+```
+src/
+├── app/           # Application shell: navigation, providers, theme, config, services
+├── assets/        # Static assets: fonts, icons, images, SVG, Lottie
+├── components/    # Atomic Design: atoms → molecules → organisms → templates
+├── features/      # Feature modules (home, about, settings, auth)
+├── domain/        # Core entities, repository interfaces, shared use cases
+├── data/          # API client, repository implementations, mappers
+├── shared/        # Cross-cutting utilities, hooks, validations, types
+├── store/         # Redux store, slices, selectors, middleware
+└── tests/         # Unit, integration tests, mocks, setup
+```
+
+See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed folder explanations.
+
+## Prerequisites
+
+- Node.js >= 22.11
+- Yarn 1.x
+- Xcode 15+ (iOS)
+- Android Studio + JDK 17 (Android)
+- CocoaPods (iOS)
+
+## Installation
+
+```bash
+cd RN-CLI-App
+yarn install
+
+# iOS
+cd ios && pod install && cd ..
+```
+
+## Environment Configuration
+
+| File               | Environment |
+| ------------------ | ----------- |
+| `.env.development` | Development |
+| `.env.qa`          | QA          |
+| `.env.staging`     | Staging     |
+| `.env.production`  | Production  |
+
+## Run
+
+```bash
+# Development
 yarn start
+yarn android:dev
+yarn ios:dev
+
+# QA / Staging / Production
+yarn android:qa
+yarn ios:staging
+yarn android:prod
 ```
 
-## Step 2: Build and run your app
+## Default Login Credentials
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+The login screen is pre-filled with default credentials for quick testing:
 
-### Android
+| Field    | Value           |
+| -------- | --------------- |
+| Email    | `user@cpkc.com` |
+| Password | `Password@123`  |
 
-```sh
-# Using npm
-npm run android
+Simply tap the **Login** button to navigate to the home page.
 
-# OR using Yarn
-yarn android
-```
+## Scripts
 
-### iOS
+| Script               | Description                       |
+| -------------------- | --------------------------------- |
+| `yarn lint`          | ESLint check                      |
+| `yarn typecheck`     | TypeScript strict check           |
+| `yarn test`          | Jest unit tests                   |
+| `yarn test:coverage` | Tests with 80% coverage threshold |
+| `yarn format`        | Prettier format                   |
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+## Git Branch Strategy
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+| Branch      | Purpose             |
+| ----------- | ------------------- |
+| `main`      | Production releases |
+| `develop`   | Integration branch  |
+| `feature/*` | New features        |
+| `release/*` | Release candidates  |
+| `hotfix/*`  | Production hotfixes |
 
-```sh
-bundle install
-```
+## Commit Convention
 
-Then, and every time you update your native dependencies, run:
+Uses [Conventional Commits](https://www.conventionalcommits.org/):
 
-```sh
-bundle exec pod install
-```
+`feat`, `fix`, `refactor`, `docs`, `test`, `style`, `perf`, `build`, `ci`, `chore`
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+## CI/CD
 
-```sh
-# Using npm
-npm run ios
+GitHub Actions workflow (`.github/workflows/ci.yml`):
 
-# OR using Yarn
-yarn ios
-```
+- Lint
+- Type Check
+- Unit Tests (80% coverage)
+- Android Build
+- iOS Build
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+Fastlane lanes prepared for Firebase App Distribution.
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+## Security
 
-## Step 3: Modify your app
+- Secure token storage (MMKV + Keychain-ready)
+- SSL/Certificate pinning architecture
+- Jailbreak/Root detection ready
+- Screenshot prevention for sensitive screens
+- Session timeout handling
 
-Now that you have successfully run the app, let's make changes!
+## Production Checklist
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+See [docs/PRODUCTION_CHECKLIST.md](docs/PRODUCTION_CHECKLIST.md)
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+## License
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Private — Enterprise use only.

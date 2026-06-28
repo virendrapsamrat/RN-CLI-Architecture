@@ -1,0 +1,50 @@
+{
+  "common": {
+    "appName": "App RN CLI",
+    "loading": "Cargando...",
+    "retry": "Reintentar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "error": "Algo salió mal",
+    "offline": "Estás sin conexión"
+  },
+  "auth": {
+    "login": "Iniciar sesión",
+    "signup": "Registrarse",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "biometricLogin": "Iniciar con biometría",
+    "otpTitle": "Verificar OTP",
+    "otpSubtitle": "Ingresa el código enviado a tu correo"
+  },
+  "home": {
+    "title": "Inicio",
+    "welcome": "Bienvenido a RN CLI App",
+    "subtitle": "Arquitectura React Native lista para empresas"
+  },
+  "about": {
+    "title": "Acerca de",
+    "description": "Construido con Clean Architecture, MVVM y Atomic Design."
+  },
+  "settings": {
+    "title": "Configuración",
+    "theme": "Tema",
+    "language": "Idioma",
+    "notifications": "Notificaciones",
+    "security": "Seguridad",
+    "logout": "Cerrar sesión",
+    "darkMode": "Modo oscuro",
+    "biometric": "Inicio biométrico"
+  },
+  "profile": {
+    "title": "Perfil",
+    "editProfile": "Editar perfil"
+  },
+  "tabs": {
+    "home": "Inicio",
+    "about": "Acerca de",
+    "settings": "Configuración",
+    "profile": "Perfil"
+  }
+}

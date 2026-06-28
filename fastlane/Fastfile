@@ -1,0 +1,33 @@
+default_platform(:ios)
+
+platform :ios do
+  desc "Deploy to Firebase App Distribution"
+  lane :distribute_ios do
+    build_app(
+      workspace: "RnCliApp.xcworkspace",
+      scheme: "RnCliApp",
+      export_method: "development"
+    )
+    # firebase_app_distribution(
+    #   app: ENV["FIREBASE_APP_ID"],
+    #   groups: "testers",
+    #   release_notes: "New build from CI"
+    # )
+  end
+end
+
+platform :android do
+  desc "Deploy to Firebase App Distribution"
+  lane :distribute_android do
+    gradle(
+      task: "assemble",
+      build_type: "Release",
+      project_dir: "android/"
+    )
+    # firebase_app_distribution(
+    #   app: ENV["FIREBASE_ANDROID_APP_ID"],
+    #   groups: "testers",
+    #   release_notes: "New build from CI"
+    # )
+  end
+end

@@ -66,6 +66,10 @@ yarn-error.log
 # testing
 /coverage
 
+# Environment
+.env.local
+.env.*.local
+
 # Yarn
 .yarn/*
 !.yarn/patches

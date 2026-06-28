@@ -1,0 +1,50 @@
+{
+  "common": {
+    "appName": "RN CLI App",
+    "loading": "Loading...",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "save": "Save",
+    "error": "Something went wrong",
+    "offline": "You are offline"
+  },
+  "auth": {
+    "login": "Login",
+    "signup": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot Password?",
+    "biometricLogin": "Login with Biometrics",
+    "otpTitle": "Verify OTP",
+    "otpSubtitle": "Enter the code sent to your email"
+  },
+  "home": {
+    "title": "Home",
+    "welcome": "Welcome to RN CLI App",
+    "subtitle": "Enterprise-ready React Native architecture"
+  },
+  "about": {
+    "title": "About",
+    "description": "Built with Clean Architecture, MVVM, and Atomic Design."
+  },
+  "settings": {
+    "title": "Settings",
+    "theme": "Theme",
+    "language": "Language",
+    "notifications": "Notifications",
+    "security": "Security",
+    "logout": "Logout",
+    "darkMode": "Dark Mode",
+    "biometric": "Biometric Login"
+  },
+  "profile": {
+    "title": "Profile",
+    "editProfile": "Edit Profile"
+  },
+  "tabs": {
+    "home": "Home",
+    "about": "About",
+    "settings": "Settings",
+    "profile": "Profile"
+  }
+}
