@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import {View, StyleSheet} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Animated, {
@@ -11,7 +10,10 @@ import {useTranslation} from 'react-i18next';
 import {NAVIGATION} from '@app/constants';
 import {useTheme} from '@app/providers/ThemeProvider';
 import {MainTabParamList} from '@app/navigation/types';
-import {Text} from '@components/atoms/Text/Text';
+import {HomeScreen} from '@features/home/screens/HomeScreen';
+import {AboutScreen} from '@features/about/screens/AboutScreen';
+import {SettingsScreen} from '@features/settings/screens/SettingsScreen';
+import {ProfileScreen} from '@features/settings/screens/ProfileScreen';
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 
@@ -46,37 +48,6 @@ const AnimatedTabIcon: React.FC<AnimatedTabIconProps> = ({
     </Animated.View>
   );
 };
-
-const TabScreenLayout: React.FC<{titleKey: string; bodyKey: string}> = ({
-  titleKey,
-  bodyKey,
-}) => {
-  const {t} = useTranslation();
-  const {theme} = useTheme();
-
-  return (
-    <View style={[styles.screen, {backgroundColor: theme.colors.background}]}>
-      <Text variant="h2">{t(titleKey)}</Text>
-      <Text variant="body" color={theme.colors.textSecondary}>
-        {t(bodyKey)}
-      </Text>
-    </View>
-  );
-};
-
-const HomeScreen = () => <TabScreenLayout titleKey="home.title" bodyKey="home.welcome" />;
-
-const AboutScreen = () => (
-  <TabScreenLayout titleKey="about.title" bodyKey="about.description" />
-);
-
-const SettingsScreen = () => (
-  <TabScreenLayout titleKey="settings.title" bodyKey="settings.theme" />
-);
-
-const ProfileScreen = () => (
-  <TabScreenLayout titleKey="profile.title" bodyKey="profile.editProfile" />
-);
 
 const tabIcons: Record<
   keyof MainTabParamList,
@@ -141,13 +112,3 @@ export const MainTabs = () => {
     </Tab.Navigator>
   );
 };
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 24,
-    gap: 8,
-  },
-});
